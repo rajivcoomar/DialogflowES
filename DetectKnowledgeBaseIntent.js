@@ -1,10 +1,9 @@
 const dialogflow = require('@google-cloud/dialogflow').v2beta1;
 
-callDetectIntent();
+callKnowledge();
 
 
-
-async function callDetectIntent(){
+async function callKnowledge(){
 	
 	
 	 const sessionClient = new dialogflow.SessionsClient();
@@ -12,7 +11,7 @@ async function callDetectIntent(){
 	 const projectId = '<ProjectID>';
 	 const sessionId = Math.floor(Math.random() * 37 ) ; ;
 	 const languageCode = 'en-US';
-	 
+	 const knowledgeBaseId = '<KnowledgeBaseId>';
 	// const query = `phrase(s) to pass to detect, e.g. I'd like to reserve a room for six people`;
 
 	// Define session path
@@ -20,18 +19,21 @@ async function callDetectIntent(){
 	  projectId,
 	  sessionId
 	);
-	
+	const knowledgeBasePath =
+	  'projects/' + projectId + '/knowledgeBases/' + knowledgeBaseId ;
 
 	// The audio query request
 	const request = {
 	  session: sessionPath,
 	  queryInput: {
 		text: {
-		  text: 'Hi',
+		  text: 'What can I do to protect myself and prevent',
 		  languageCode: languageCode,
 		},
 	  },
-	
+	 queryParams: {
+		knowledgeBaseNames: [knowledgeBasePath],
+	  },
 	   headers: { 
 				
 				 'content-type': 'application/json; charset=utf-8' 
@@ -45,3 +47,4 @@ async function callDetectIntent(){
 	console.log(result);
 	  
 }
+
