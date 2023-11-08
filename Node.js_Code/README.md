@@ -3,7 +3,7 @@ Code explained in youtube. Refer the channel playlist:
 
 
 Node.js - Default Credentials - Service Account JSON
-gcloud auth login
-gcloud projects list
-gcloud config set project
-gcloud auth application-default login
+- gcloud auth login
+- gcloud projects list
+- gcloud config set project
+- gcloud auth application-default login
